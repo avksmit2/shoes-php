@@ -217,6 +217,28 @@
         }
     }
 
+    function find()
+    {
+        // Assemble
+        $brand_name = "Nike";
+        $id = null;
+        $price = 10.99;
+        $available = true;
+        $test_brand = new Brand($brand_name, $price, $available, $id);
+        $test_brand->save();
 
+        $brand_name2 = "Converse";
+        $id2 = null;
+        $price2 = 21.95;
+        $available2 = true;
+        $test_brand2 = new Brand($brand_name2, $price2, $available2, $id2);
+        $test_brand2->save();
+
+        // Act
+        $result = Brand::find($test_brand2->getId());
+
+        // Assert
+        $this->assertEquals($test_brand2, $result);
+    }
 
 ?>

@@ -56,7 +56,7 @@
             $id = null;
             $test_store = new Store($store_name, $id);
             $test_store->save();
-            
+
             // Act
             $result = Store::getAll();
 
@@ -120,6 +120,26 @@
 
             // Assert
             $this->assertEquals([], $result);
+        }
+
+        function testFind()
+        {
+            // Assemble
+            $store_name = "Payless";
+            $id = null;
+            $test_store = new Store($store_name, $id);
+            $test_store->save();
+
+            $store_name2 = "Famous Footwear";
+            $id2 = null;
+            $test_store2 = new Store($store_name2, $id2);
+            $test_store2->save();
+
+            // Act
+            $result = Store::find($test_store2->getId());
+
+            // Assert
+            $this->assertEquals($test_store2, $result);
         }
     }
 
