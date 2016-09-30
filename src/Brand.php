@@ -49,6 +49,40 @@ class Brand
         return $this->id;
     }
 
+    function save()
+    {
+        $GLOBALS['DB']->exec("INSERT INTO brands (brand_name, price, available) VALUES ('{$this->getBrandName()}', {$this->getPrice()}, {$this->getAvailable()});");
+        $this->id = $GLOBALS['DB']->lastInsertId();
+    }
+
+    static function getAll()
+    {
+        $brands = array();
+        $returned_brands = $GLOBALS['DB']->query("SELECT * FROM brands;");
+        foreach($returned_brands as $brand) {
+            $brand_name = $brand['brand_name'];
+            $price = $brand['price'];
+            $available = $brand['available'];
+            $id = $brand['id'];
+            $new_brand = new Brand($brand_name, $price, $available, $id);
+            array_push($brands, $new_brand);
+        }
+        return $brands;
+    }
+
+    function updateBrand($new_brand_name, $new_price, $new_available)
+    {
+        $GLOBALS['DB']->exec("UPDATE brands SET brand_name = '{$new_brand_name}', price = {$new_price}, available = {$new_available};");
+        $this->setBrandName($new_brand_name);
+        $this->setPrice($new_price);
+        $this->setAvailable($new_available);
+    }
+
+    static function deleteAll()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM brands;");
+    }
+
 
 }
 ?>
