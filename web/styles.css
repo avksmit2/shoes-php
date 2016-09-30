@@ -1,0 +1,13 @@
+.header {
+    text-align: center;
+    color: purple;
+    margin: 2%;
+    font-size: 5em;
+}
+
+.well {
+    padding: 10%;
+}
+.well h3 {
+    font-size: 2em;
+}
