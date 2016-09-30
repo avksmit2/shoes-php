@@ -16,3 +16,8 @@
 li {
     font-size: 1.5em;
 }
+
+.emphasis {
+    font-style: italic;
+    text-decoration: underline;
+}

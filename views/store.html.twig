@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/styles.css" rel="stylesheet">
+        <title>Shoe Stores</title>
+        </head>
+    <body>
+        <h1 class="header">Welcome to <span class="emphasis">{{ store.getStoreName }}</span>!</h1>
+        <div class="container">
+            {% if brands is not empty %}
+                <h1>Here are all of the shoe brands entered for {{ store.getStoreName }}:</h1>
+                <h3>Click to see an individual shoe brand and what stores have it.</h3>
+                {% for brand in brands %}
+                    <li><a href="/brand_stores/{{ brand.getId }}">{{ brand.getBrandName }}</a></li>
+                {% endfor %}
+            {% else %}
+                <h2>There are no shoe brands entered for {{ store.getStoreName }} yet</h2>
+            {% endif %}
+
+            <div class="well add_object">
+                <h2>Add a shoe brand to {{ store.getStoreName }}:</h2>
+                <form action="/store_add_brand/{{ store.getId }}" method="post">
+                    <div class="form-group">
+                        <label for="brand_id">Shoe Brand Name:</label>
+                        <select id="brand_id" name="brand_id">
+                            <option></option>
+                            {% for brand in brands %}
+                                <option value="{{ brand.getId }}">{{ brand.getBrandName }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <h3><a href="/brands">Click</a> to add a brand if you do not see it in the list here.</h3>
+                    <button class="btn btn-info" type="submit">Add Store</button>
+                </form>
+            </div>
+
+            <form action="/store_delete/{{ store.getId }}">
+                <button class="btn btn-danger">Delete This Store</button>
+            </form>
+
+            <h3><a href="/brands">See All Brands Entered</a></h3>
+            <h3><a href="/">Home</a></h3>
+        </div>
+    </body>
+</html>

@@ -40,7 +40,27 @@
         $store_name = $_POST['store_name'];
         $store = new Store($store_name);
         $store->save();
-        
+
+        return $app['twig']->render("stores.html.twig", array('stores' => Store::getAll()));
+    });
+
+    $app->get("/store_brands/{id}", function($id) use ($app) {
+        $store = Store::find($id);
+
+        return $app['twig']->render("store.html.twig", array('store' => $store, 'brands' => $store->getBrands()));
+    });
+
+    $app->post("/store_add_brand/{id}", function($id) use ($app) {
+        $store = Store::find($id);
+        $store->addBrand($_POST['brand_id']);
+
+        return $app['twig']->render("store.html.twig", array('store' => $store, 'brands' => $store->getBrands()));
+    });
+
+    $app->get("/store_delete/{id}", function($id) use ($app) {
+        $store = Store::find($id);
+        $store->deleteStore();
+
         return $app['twig']->render("stores.html.twig", array('stores' => Store::getAll()));
     });
 
