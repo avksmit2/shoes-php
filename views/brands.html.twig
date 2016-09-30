@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/styles.css" rel="stylesheet">
+        <title>Shoe Stores</title>
+        </head>
+    <body>
+        <h1 class="header">Shoe Brands</h1>
+        <div class="container">
+            {% if brands is not empty %}
+                <h1>Here are all of the shoe brands entered:</h1>
+                <h3>Click to see an individual shoe brand and the stores where it is sold.</h3>
+                {% for brand in brands %}
+                    <li><a href="/brand_stores/{{ brand.getId }}">{{ brand.getBrandName }},
+                        going for ${{ brand.getPrice }};
+                        Available: {% if brand.getAvailable == 1 %} yes {% endif %} {% if brand.getAvailable == 0 %} no {% endif %}</a></li>
+                {% endfor %}
+            {% else %}
+                <h2>There are no brands entered yet</h2>
+            {% endif %}
+
+            <div class="well add_object">
+                <h2>Enter a New Brand:</h2>
+                <form action="/brands_add" method="post">
+                    <div class="form-group">
+                        <label for="brand_name">Brand Name:</label>
+                        <input id="brand_name" name="brand_name" type="text" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input id="price" name="price" type="text" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="available">Availability:</label>
+                        <select id="available" name="available" type="text" required>
+                            <option></option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-info" type="submit">Add Brand</button>
+                </form>
+            </div>
+
+            <form action="/brands_delete_all">
+                <button class="btn btn-danger">Delete All Brands</button>
+            </form>
+
+            <h3><a href="/stores">See All Stores Entered</a></h3>
+            <h3><a href="/">Home</a></h3>
+        </div>
+    </body>
+</html>

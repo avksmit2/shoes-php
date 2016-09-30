@@ -6,7 +6,7 @@ class Brand
     private $available;
     private $id;
 
-    function __construct($brand_name, $price, $available=1, $id=null)
+    function __construct($brand_name, $price, $available=true, $id=null)
     {
         $this->brand_name = $brand_name;
         $this->price = $price;
@@ -89,7 +89,7 @@ class Brand
         $brands = Brand::getAll();
         foreach($brands as $brand) {
             $brand_id = $brand->getId();
-            if ($brand_id = $search_id)
+            if ($brand_id == $search_id)
             {
                 $found_brand = $brand;
             }
