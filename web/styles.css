@@ -1,14 +1,27 @@
+body {
+    background-image: url("http://imgsnap.com/images/2016/04/16/yellow-background-8.jpg");
+}
+
 .header {
     text-align: center;
     color: purple;
     margin: 2%;
-    font-size: 5em;
+    font-size: 4em;
+}
+
+.brand_details {
+    font-style: italic;
+    color: purple;
 }
 
 .well {
-    padding: 10%;
+    height: 35vh;
+    padding: 5%;
     margin: 4%;
+    background: transparent;
+    border: dotted;
 }
+
 .well h3 {
     font-size: 2em;
 }
@@ -20,4 +33,12 @@ li {
 .emphasis {
     font-style: italic;
     text-decoration: underline;
+}
+
+.new_object {
+    font-size: 1.5em;
+}
+
+.col-sm-6 {
+    padding: 0;
 }

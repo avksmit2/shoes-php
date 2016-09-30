@@ -6,6 +6,7 @@
         </head>
     <body>
         <h1 class="header">This is <span class="emphasis">{{ brand.getBrandName }}</span>!</h1>
+        <h2 class="text-center brand_details">Priced at ${{ brand.getPrice }} and {% if brand.getAvailable == 1 %} is {% else %} is not {% endif %} available</h2>
         <div class="container">
             {% if stores is not empty %}
                 <h1>Here are all of the stores entered that carry {{ brand.getBrandName }}:</h1>
@@ -24,7 +25,7 @@
                         <form action="/brand_add_store/{{ brand.getId }}" method="post">
                             <div class="form-group">
                                 <label for="store_id">Store Name:</label>
-                                <select id="store_id" name="store_id">
+                                <select id="store_id" name="store_id" class="form-control">
                                     <option></option>
                                     {% for store in all_stores %}
                                         <option name="store_id" value="{{ store.getId }}">{{ store.getStoreName }}</option>
@@ -44,17 +45,21 @@
                             <input type="hidden" name="_method" value="patch">
                             <div class="form-group">
                                 <label for="brand_name">Brand Name:</label>
-                                <input id="brand_name" name="brand_name" value="{{ brand.getBrandName }}" type="text" required>
+                                <input id="brand_name" name="brand_name" value="{{ brand.getBrandName }}" type="text" class="form-control" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="price">Price:</label>
-                                <input id="price" name="price" value="{{ brand.getPrice }}" required>
+                                <input id="price" name="price" value="{{ brand.getPrice }}" class="form-control" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="available">Available:</label>
-                                <input id="available" name="available" value="{% if brand.getAvailable == 1 %} yes {% endif %} {% if brand.getAvailable == 0 %} no {% endif %}" required>
+                                <select id="available" name="available" required value="{{ brand.getAvailable }}">
+                                    <option></option>
+                                     <option value=1>Yes</option>
+                                     <option value=0>No</option>
+                                 </select>
                             </div>
                             <button class="btn btn-warning">Update Brand</button>
                         </form>

@@ -17,16 +17,21 @@
                 <h2>There are no stores entered yet</h2>
             {% endif %}
 
-            <div class="well add_object">
-                <h2>Enter a store:</h2>
-                <form action="/stores_add" method="post">
-                    <div class="form-group">
-                        <label for="store_name">Store Name:</label>
-                        <input id="store_name" name="store_name" type="text" required>
-                    </div>
+            <div class="well new_object">
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <h2 class="text-center">Enter a store:</h2>
+                        <form action="/stores_add" method="post">
+                            <div class="form-group">
+                                <label for="store_name">Store Name:</label>
+                                <input id="store_name" name="store_name" type="text" class="form-control"  required>
+                            </div>
 
-                    <button class="btn btn-info" type="submit">Add Store</button>
-                </form>
+                            <button class="btn btn-info" type="submit">Add Store</button>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <form action="/stores_delete_all">
