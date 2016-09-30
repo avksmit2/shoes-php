@@ -6,7 +6,7 @@ class Brand
     private $available;
     private $id;
 
-    function __construct($brand_name, $price, $available=true, $id=null)
+    function __construct($brand_name, $price, $available=1, $id=null)
     {
         $this->brand_name = $brand_name;
         $this->price = $price;
@@ -26,7 +26,7 @@ class Brand
 
     function setPrice($new_price)
     {
-        $this->price = (float)$new_price;
+        $this->price = (float)round($new_price,2);
     }
 
     function getPrice()
@@ -58,13 +58,13 @@ class Brand
     static function getAll()
     {
         $brands = array();
-        $returned_brands = $GLOBALS['DB']->query("SELECT * FROM brands;");
+        $returned_brands = $GLOBALS['DB']->query("SELECT * FROM brands ORDER BY price;");
         foreach($returned_brands as $brand) {
             $brand_name = $brand['brand_name'];
             $price = $brand['price'];
             $available = $brand['available'];
             $id = $brand['id'];
-            $new_brand = new Brand($brand_name, $price, $available, $id);
+            $new_brand = new Brand($brand_name, (float)$price, (bool)$available, (int)$id);
             array_push($brands, $new_brand);
         }
         return $brands;
