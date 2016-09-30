@@ -36,5 +36,13 @@
         return $app['twig']->render("stores.html.twig", array('stores' => Store::getAll()));
     });
 
+    $app->post("/stores_add", function() use ($app) {
+        $store_name = $_POST['store_name'];
+        $store = new Store($store_name);
+        $store->save();
+        
+        return $app['twig']->render("stores.html.twig", array('stores' => Store::getAll()));
+    });
+
     return $app;
 ?>

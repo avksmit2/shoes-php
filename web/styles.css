@@ -7,7 +7,12 @@
 
 .well {
     padding: 10%;
+    margin: 4%;
 }
 .well h3 {
     font-size: 2em;
+}
+
+li {
+    font-size: 1.5em;
 }

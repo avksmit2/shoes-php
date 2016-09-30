@@ -1,15 +1,15 @@
 <html>
     <head>
-        <link href="https://maxcdn.bootstrap.cdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
         <link href="/styles.css" rel="stylesheet">
         <title>Shoe Stores</title>
         </head>
     <body>
         <h1 class="header">Shoe Stores</h1>
-        <div class="container well">
+        <div class="container">
             {% if stores is not empty %}
-                <h2>Here are all of the stores entered:</h2>
-                <h4>Click to see individual stores and its shoe brands.</h4>
+                <h1>Here are all of the stores entered:</h1>
+                <h3>Click to see an individual store and its shoe brands.</h3>
                 {% for store in stores %}
                     <li><a href="/store_brands/{{ store.getId }}">{{ store.getStoreName }}</a></li>
                 {% endfor %}
@@ -17,20 +17,22 @@
                 <h2>There are no stores entered yet</h2>
             {% endif %}
 
-            <h2>Enter a store:</h2>
-            <form action="/stores_add" method="post">
-                <div class="form-group">
-                    <label for="store_name">Store Name:</label>
-                    <input id="store_name" name="store_name" type="text" require>
-                </div>
+            <div class="well add_object">
+                <h2>Enter a store:</h2>
+                <form action="/stores_add" method="post">
+                    <div class="form-group">
+                        <label for="store_name">Store Name:</label>
+                        <input id="store_name" name="store_name" type="text" require>
+                    </div>
 
-                <button class="btn btn-info" type="submit">Add Store</button>
-            </form>
+                    <button class="btn btn-info" type="submit">Add Store</button>
+                </form>
+            </div>
 
             <form action="/stores_delete_all">
                 <button class="btn btn-danger">Delete All Stores</button>
             </form>
-            
+
             <h3><a href="/brands">See All Brands Entered</a></h3>
             <h3><a href="/">Home</a></h3>
         </div>
