@@ -128,7 +128,7 @@
             $this->assertEquals([$test_brand, $test_brand2], $result);
         }
 
-        function updateBrandName()
+        function testUpdateBrandName()
         {
             // Assemble
             $brand_name = "Nike";
@@ -143,13 +143,13 @@
             $new_available = false;
 
             // Act
-            $test_brand->update($new_brand_name, $new_price, $new_available);
+            $test_brand->updateBrand($new_brand_name, $new_price, $new_available);
 
             // Assert
             $this->assertEquals("Converse", $test_brand->getBrandName());
         }
 
-        function updatePrice()
+        function testUpdatePrice()
         {
             // Assemble
             $brand_name = "Nike";
@@ -164,13 +164,13 @@
             $new_available = false;
 
             // Act
-            $test_brand->update($new_brand_name, $new_price, $new_available);
+            $test_brand->updateBrand($new_brand_name, $new_price, $new_available);
 
             // Assert
             $this->assertEquals(22.95, $test_brand->getPrice());
         }
 
-        function updateAvailable()
+        function testUpdateAvailable()
         {
             // Assemble
             $brand_name = "Nike";
@@ -185,7 +185,7 @@
             $new_available = false;
 
             // Act
-            $test_brand->update($new_brand_name, $new_price, $new_available);
+            $test_brand->updateBrand($new_brand_name, $new_price, $new_available);
 
             // Assert
             $this->assertEquals(false, $test_brand->getAvailable());
@@ -217,7 +217,7 @@
         }
     }
 
-    function find()
+    function testFind()
     {
         // Assemble
         $brand_name = "Nike";
@@ -241,4 +241,25 @@
         $this->assertEquals($test_brand2, $result);
     }
 
+    function testAddStore()
+    {
+        // Assemble
+        $brand_name = "Nike";
+        $id = null;
+        $price = 10.99;
+        $available = true;
+        $test_brand = new Brand($brand_name, $price, $available, $id);
+        $test_brand->save();
+
+        $store_name = "Payless";
+        $id = null;
+        $test_store = new Store($store_name, $id);
+        $test_store->save();
+
+        // Act
+        $test_brand->addStore($test_store);
+
+        // Assert
+        $this->assertEquals($test_store, $test_brand->getStores());
+    }
 ?>

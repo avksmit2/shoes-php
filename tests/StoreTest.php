@@ -141,8 +141,27 @@
             // Assert
             $this->assertEquals($test_store2, $result);
         }
+
+        function testAddBrand()
+        {
+            // Assemble
+            $store_name = "Payless";
+            $id = null;
+            $test_store = new Store($store_name, $id);
+            $test_store->save();
+
+            $brand_name = "Nike";
+            $id = null;
+            $price = 10.99;
+            $available = true;
+            $test_brand = new Brand($brand_name, $price, $available, $id);
+            $test_brand->save();
+
+            // Act
+            $test_store->addBrand($test_brand);
+
+            // Assert
+            $this->assertEquals([$test_brand], $test_store->getBrands());
+        }
     }
-
-
-
 ?>
