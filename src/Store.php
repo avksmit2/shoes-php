@@ -1,5 +1,5 @@
 <?php
-class
+class Store
 {
     private $store_name;
     private $id;
